@@ -1,39 +1,13 @@
-<html>
-<head>
-  <title>My blog</title>
-  <body>
-    <p>Hi there!</p>
-    <p>                         It works well! </p>
+{% extends 'blog/base.html' %}
 
-    <div>
-      <h1><a href="/">Django Girls Blog</a></h1>
-    </div>
-
-    <div>
-      <p>published: 14.06.2014, 12:14</p>
-      <h2><a href="">My first post</a></h2>
-      <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    </div>
-
-    <div>
-      <p>published: 14.06.2014, 12:14</p>
-      <h2><a href="">My second post</a></h2>
-      <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-    </div>
-
-    <div>
-      <h2><a href="">Thiago eu te amo</a></h2>
-      <p>published: HOJE</p>
-      <p>You are the one for me for me formidaaaable!! </p>
-    </div>
-
+{% block content %}
     {% for post in posts %}
-      <div>
-        <h1> <a href=""> {{ post.title }} </a> </h1>
-        <p>Published {{post.published_date}} </p>
-        <p> {{post.text|linebreaksbr}} </p>
-      </div>
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
     {% endfor %}
-
-  </body>
-</html>
+{% endblock %}
